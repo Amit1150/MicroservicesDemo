@@ -1,0 +1,11 @@
+{
+  "ReRoutes": [
+    {
+      "ServiceName": "orderservice",
+      "UseServiceDiscovery": true,
+      "UpstreamPathTemplate": "/order-api/{catchAll}",
+      "DownstreamPathTemplate": "/api/values",
+      "DownstreamScheme": "http"
+    }
+  ]
+}
