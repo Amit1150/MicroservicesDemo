@@ -4,14 +4,14 @@ EXPOSE 80
 
 FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
-COPY ["ProductAPI/ProductAPI.csproj", "ProductAPI/"]
-RUN dotnet restore "ProductAPI/ProductAPI.csproj"
+COPY ProductAPI/ProductAPI.csproj ProductAPI/
+RUN dotnet restore ProductAPI/ProductAPI.csproj
 COPY . .
-WORKDIR "/src/ProductAPI"
-RUN dotnet build "ProductAPI.csproj" -c Release -o /app
+WORKDIR /src/ProductAPI
+RUN dotnet build ProductAPI.csproj -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "ProductAPI.csproj" -c Release -o /app
+RUN dotnet publish ProductAPI.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
